@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1773835310 source:c:\users\usuario\desktop\codigogit\prgramacin103\pilas\tp2_funcionesconpilas\pila.c
+	<stdio.h>
+	"pila.h"
+
+1773835314 c:\users\usuario\desktop\codigogit\prgramacin103\pilas\tp2_funcionesconpilas\pila.h
+
+1773838189 source:c:\users\usuario\desktop\codigogit\prgramacin103\pilas\tp2_funcionesconpilas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
