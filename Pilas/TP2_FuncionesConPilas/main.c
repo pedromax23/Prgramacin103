@@ -2,24 +2,40 @@
 #include <stdlib.h>
 #include "pila.h"
 
-/// TP N°2: Funciones con Pilas
+/// TP Nï¿½2: Funciones con Pilas
 
 /// EJERCICIO 1
 void funcionDeCarga(Pila *pilaA) {
+<<<<<<< HEAD
 
     char letra = 's';
     while(letra == 's') {
         leer(pilaA);
         printf("Quieres ingresar otro dato s/n: ");
+=======
+    char letra = 's';
+    while(letra == 's') {
+        leer(pilaA);
+        printf("Quiere seguir ingresando datos s/n: \n");
+>>>>>>> c61f739e7c439ef2d51434eecb2d9afb76bccb64
         scanf(" %c", &letra);
     }
 
 }
 
 /// EJERCICIO 2
+<<<<<<< HEAD
 Pila pasarAUnaPila(Pila pilaA, Pila pilaB) {
     while(!pilavacia(&pilaA)) {
         apilar(&pilaB, desapilar(&pilaA));
+=======
+Pila pasarElementos(Pila pilaA, Pila pilaB) {
+
+    while(!pilavacia(&pilaA)) {
+
+        apilar(&pilaB, desapilar(&pilaA));
+
+>>>>>>> c61f739e7c439ef2d51434eecb2d9afb76bccb64
     }
 
     return pilaB;

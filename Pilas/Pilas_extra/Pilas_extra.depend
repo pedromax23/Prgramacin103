@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1774439300 source:c:\users\usuario\desktop\pilas_extra\pila.c
+	<stdio.h>
+	"pila.h"
+
+1774439304 c:\users\usuario\desktop\pilas_extra\pila.h
+
+1774442361 source:c:\users\usuario\desktop\pilas_extra\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
