@@ -11,17 +11,17 @@
 
 
 
-8. Realizar una función que obtenga el máximo carácter de un arreglo dado.
-9. Realizar una función que determine si un arreglo es capicúa.
-10. Realizar una función que invierta los elementos de un arreglo. (sin utilizar un arreglo auxiliar)
-11. Ordenar un arreglo según los siguientes métodos:
-a. Selección
-b. Inserción
-12. Dados dos arreglos ordenados alfabéticamente, crear un tercer arreglo con los elementos de
-los dos primeros intercalados, de manera que quede un arreglo también ordenado
-alfabéticamente.
+8. Realizar una funciï¿½n que obtenga el mï¿½ximo carï¿½cter de un arreglo dado.
+9. Realizar una funciï¿½n que determine si un arreglo es capicï¿½a.
+10. Realizar una funciï¿½n que invierta los elementos de un arreglo. (sin utilizar un arreglo auxiliar)
+11. Ordenar un arreglo segï¿½n los siguientes mï¿½todos:
+a. Selecciï¿½n
+b. Inserciï¿½n
+12. Dados dos arreglos ordenados alfabï¿½ticamente, crear un tercer arreglo con los elementos de
+los dos primeros intercalados, de manera que quede un arreglo tambiï¿½n ordenado
+alfabï¿½ticamente.
 13. Dado el vector {1,5,6,7,8} escribir un programa que genere otro vector con la suma del
-contenido de todo los elementos anteriores al índice actual: {1,6,12,19,27}.
+contenido de todo los elementos anteriores al ï¿½ndice actual: {1,6,12,19,27}.
 */
 
 /// EJERCICIO 1
@@ -80,6 +80,7 @@ Pila copiarElementos(int ArregloA[], int validos) {
     return aux;
 
 }
+
 /// EJERCICIO 5
 int cargarDatosReales(float reales[], int tamano) {
     float min = 0.0, max = 100.0;
@@ -131,15 +132,119 @@ void seEncuentra(char caracteres[], char caracter, int tamano) {
 
 }
 
+/// EJERCICIO 7
+void insertarCaracter(char caracteres[], char caracter, int *tamano) {
+
+    int i = 0;
+
+    // Bucle para encontrar la posiciÃ³n correcta para insertar el nuevo carÃ¡cter
+    while(i < *tamano && caracteres[i] < caracter) {
+        i++;
+    }
+
+    // Buecle para desplazar los elementos hacia la derecha y hacer espacio para el nuevo carÃ¡cter
+    for(int j = *tamano; j > i; j--) {
+        caracteres[j] = caracteres[j - 1];
+    }
+
+    // Insertar el nuevo carÃ¡cter en la posiciÃ³n correcta y actualizar el tamaÃ±o del arreglo
+    caracteres[i] = caracter;
+    (*tamano)++;
+
+}
+
+/// EJERCICIO 8
+void eliminarCaracter(char caracteres[], char caracter, int *tamano) {
+
+    int i = 0;
+
+    // Bucle para encontrar la posiciÃ³n del carÃ¡cter a eliminar
+    while(i < *tamano && caracteres[i] != caracter) {
+        i++;
+    }
+
+    // Si el carÃ¡cter no se encuentra en el arreglo, salir de la funciÃ³n
+    if(i == *tamano) {
+        printf("El caracter no se encuentra en el arreglo");
+        return;
+    }
+
+    // Bucle para desplazar los elementos hacia la izquierda y eliminar el carÃ¡cter
+    for(int j = i; j < *tamano - 1; j++) {
+        caracteres[j] = caracteres[j + 1];
+    }
+
+    // Actualizar el tamaÃ±o del arreglo despuÃ©s de eliminar el carÃ¡cter
+    (*tamano)--;
+
+}
+
+/// EJERCICIO 9
+int esCapicua(int arreglo[], int tamano) {
+
+    // Bucle para comparar los elementos del arreglo desde el inicio y el final hacia el centro
+    for(int i = 0; i < tamano / 2; i++) {
+
+        // Si los elementos no son iguales, el arreglo no es capicÃºa
+        if(arreglo[i] != arreglo[tamano - 1 - i]) {
+            return 0; // No es capicÃºa
+        }
+    }
+
+    return 1; // Es capicÃºa
+
+}
+
+/// EJERCICIO 10
+void invertirArreglo(int arreglo[], int tamano) {
+
+    // Bucle para intercambiar los elementos del arreglo desde el inicio y el final hacia el centro
+    for(int i = 0; i < tamano / 2; i++) {
+        // Almacenar el elemento del inicio en una variable temporal
+        int temp = arreglo[i];
+        // Asignar el elemento del final al elemento del inicio
+        arreglo[i] = arreglo[tamano - 1 - i];
+        // Asignar el valor almacenado en la variable temporal al elemento del final
+        arreglo[tamano - 1 - i] = temp;
+    }
+
+}
+
+/// EJERCICIO 11
+/*Para el mÃ©todo de selecciÃ³n, se puede implementar una funciÃ³n que recorra el arreglo y seleccione el elemento mÃ¡s pequeÃ±o en cada iteraciÃ³n, intercambiÃ¡ndolo con el elemento en la posiciÃ³n actual. 
+Para el mÃ©todo de inserciÃ³n, se puede implementar una funciÃ³n que recorra el arreglo y, para cada elemento, lo inserte en la posiciÃ³n correcta dentro de la parte ordenada del arreglo.*/
+void ordarSeleccion(int arreglo[], int tamano) {
+
+    // Bucle para recorrer el arreglo desde el primer elemento hasta el penÃºltimo
+    for(int i = 0; i < tamano -1; i++) {
+        // Inicializar el Ã­ndice del elemento mÃ­nimo como el Ã­ndice actual
+        int minIndex = i;
+        // Bucle para encontrar el Ã­ndice del elemento mÃ­nimo en el resto del arreglo
+        for(int j = i +1; j < tamano; j++) {
+            // Si el elemento en la posiciÃ³n j es menor que el elemento en minIndex, actualizar minIndex
+            if(arreglo[j] < arreglo[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        // Intercambiar el elemento mÃ­nimo con el elemento en la posiciÃ³n actual
+        int temp = arreglo[i];
+        arreglo[i] = arreglo[minIndex];
+        arreglo[minIndex] = temp;
+    }
+
+}
+
+
 
 int main()
 {
 
     srand(time(NULL));
     /// EJERCICIO 1
-    /* Hacer una función que reciba como parámetro un arreglo de números enteros y permita que
-    el usuario ingrese valores al mismo por teclado. La función debe retornar la cantidad de
-    elementos cargados en el arreglo (o pueden utilizar como puntero válidos). */
+    /* Hacer una funciï¿½n que reciba como parï¿½metro un arreglo de nï¿½meros enteros y permita que
+    el usuario ingrese valores al mismo por teclado. La funciï¿½n debe retornar la cantidad de
+    elementos cargados en el arreglo (o pueden utilizar como puntero vï¿½lidos). */
 
     /*
     int ArregloA[3];
@@ -149,23 +254,23 @@ int main()
 
 
     /// EJERCICIO 2
-    /* Hacer una función que reciba como parámetro un arreglo y la cantidad de elementos (válidos)
-    cargados en él y los muestre por pantalla. */
+    /* Hacer una funciï¿½n que reciba como parï¿½metro un arreglo y la cantidad de elementos (vï¿½lidos)
+    cargados en ï¿½l y los muestre por pantalla. */
     /*
     mostrarArreglo(ArregloA, validos);
     */
 
     /// EJERCICIO 3
-    /* 3. Hacer una función que reciba como parámetro un arreglo y la cantidad de elementos (válidos)
-    cargados en él y calcule la suma de sus elementos. */
+    /* 3. Hacer una funciï¿½n que reciba como parï¿½metro un arreglo y la cantidad de elementos (vï¿½lidos)
+    cargados en ï¿½l y calcule la suma de sus elementos. */
     /*
     int sumaElementos = sumarArreglo(ArregloA, validos);
     printf("La suma de los elementos es: %d", sumaElementos);
     */
 
     /// EJERCICIO 4
-    /* Hacer una función que reciba como parámetro un arreglo, la cantidad de elementos (válidos)
-    cargados en él y una Pila. La función debe copiar los elementos del arreglo en la pila. */
+    /* Hacer una funciï¿½n que reciba como parï¿½metro un arreglo, la cantidad de elementos (vï¿½lidos)
+    cargados en ï¿½l y una Pila. La funciï¿½n debe copiar los elementos del arreglo en la pila. */
     /*
     Pila pilaA;
     inicpila(&pilaA);
@@ -175,8 +280,8 @@ int main()
     */
 
     /// EJERCICIO 5
-    /* Realizar una función que sume los elementos de un arreglo de números reales (float) de
-    dimensión 100. (se recomienda hacer una función para cargar y otra para mostrar para este
+    /* Realizar una funciï¿½n que sume los elementos de un arreglo de nï¿½meros reales (float) de
+    dimensiï¿½n 100. (se recomienda hacer una funciï¿½n para cargar y otra para mostrar para este
     tipo de dato asociado al arreglo) */
     /*
     float reales[100];
@@ -186,7 +291,7 @@ int main()
     */
 
     /// EJERCICIO 6
-    /* Realizar una función que indique si un elemento dado se encuentra en un arreglo de
+    /* Realizar una funciï¿½n que indique si un elemento dado se encuentra en un arreglo de
     caracteres. */
 
     /*
@@ -196,8 +301,62 @@ int main()
     */
 
     /// EJERCICIO 7
-    /* Realizar una función que inserte un carácter en un arreglo ordenado alfabéticamente,
+    /* Realizar una funciï¿½n que inserte un carï¿½cter en un arreglo ordenado alfabï¿½ticamente,
     conservando el orden. */
+
+    // El arreglo debe tener espacio suficiente para el nuevo carÃ¡cter
+    char caracteres[4] = {'a', 'c', 'e'};
+    // El tamaÃ±o actual del arreglo es 3, pero se debe actualizar a 4 despuÃ©s de insertar el nuevo carÃ¡cter
+    int tamano = 3;
+
+    // Insertar el nuevo carÃ¡cter 'b' en el arreglo
+    insertarCaracter(caracteres, 'b', &tamano);
+
+    // Mostrar el arreglo despuÃ©s de la inserciÃ³n
+    for(int i = 0; i < tamano; i++) {
+        printf("%c ", caracteres[i]);
+    }
+
+    /// EJERCICIO 8
+    /* Realizar una funcin que elimine un carcter de un arreglo ordenado alfabticamente,
+    conservando el orden. */
+
+    // Eliminar el carÃ¡cter 'c' del arreglo
+    eliminarCaracter(caracteres, 'c', &tamano);
+
+    // Mostrar el arreglo despuÃ©s de la eliminaciÃ³n
+    for(int i = 0; i < tamano; i++) {
+        printf("%c ", caracteres[i]);
+    }
+
+    /// EJERCICIO 9
+    /* Realizar una funciï¿½n que determine si un arreglo es capicï¿½a. */
+    
+    int arregloCapicua[5] = {1, 2, 3, 2, 1};
+
+    if(esCapicua(arregloCapicua, 5)) {
+        printf("El arreglo es capicÃºa");
+    } else {
+        printf("El arreglo no es capicÃºa");
+    }
+
+    /// EJERCICIO 10
+    /* Realizar una funciï¿½n que invierta los elementos de un arreglo. (sin utilizar un arreglo auxiliar) */
+
+    int arregloInvertir[5] = {1, 2, 3, 4, 5};
+
+    invertirArreglo(arregloInvertir, 5);
+
+    // Mostrar el arreglo despuÃ©s de invertirlo
+    for(int i = 0; i < 5; i++) {
+        printf("%d ", arregloInvertir[i]);
+    }
+
+    /// EJERCICIO 11
+    /* Ordenar un arreglo segï¿½n los siguientes mï¿½todos: 
+    a. Selecciï¿½n
+    b. Inserciï¿½n */
+
 
 
 
